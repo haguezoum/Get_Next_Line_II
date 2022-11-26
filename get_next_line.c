@@ -43,10 +43,10 @@ char *chunck(char *s)
 // end rest of
 // end strjoin
 
-char *st_(int fd, char *line) {
+char *string(int fd, char *line) {
     char *buff;
     int bytes;
-
+    int loop = 0;
     bytes = 1;
     buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
     if(buff == NULL)
@@ -73,67 +73,25 @@ char *get_next_line(int fd)
     {
         return (NULL);
     }
-    line = st_(fd, line);
+    line = string(fd, line);
     if (!line)
         return NULL;
     tmp = chunck(line);
     line = restof(line);
     return tmp;
 }
+//main function
+int main()
+{
+    int fd;
+    char *r_str;
+    fd = open("_file.txt" , O_RDONLY);
 
-// int main()
-// {
-//     int fd;
-//     char *str;
-//     str = "hello world \n ggfgf";
-//     char *res = chunck(str);
-//     printf("%s",res);
-//         fd = open("_file.txt",O_RDONLY);
-//    int i = 0;
-//     while(1)
-//     { 
-//         if(str == NULL)
-//             break;
-        
-//          str = get_next_line(fd);
-//          printf("%s", str);
-         
-//         i++;
-//     }
-// }
-
-// int main()
-// {
-//     int fd;
-//     char *str;
-//     fd = open("_file.txt",O_RDONLY);
-
-    
-//     while(1){
-//         str = get_next_line(fd);
-//         printf("%s",str);
-//         break;
-//     }
-// }
-
-
-    //this fucking function dosnt returning NUUUUUUUUL aaas   fgqgriu;gqrt
-  
-    // str = get_next_line(fd);
-    // printf("%s",str);
-    // str = get_next_line(fd);
-    // printf("%s",str);
-    
-    // char *test = "hassan\nand this is a test";
-    // char *mystr;
-    //  mystr = restof(test);
-    //  printf("%s",mystr);
-
-// } main
-
-// int main()
-// {
-//     char *str = "mehdi\0\nhassan\naguezoum";
-//     char *ret = chunck(str);
-//     puts(ret);
-// }
+    while(1)
+    {
+        r_str = get_next_line(fd);
+        printf("%s", r_str);
+        if(r_str == NULL)
+            break;
+    }
+}

@@ -22,7 +22,7 @@
 // #include<crtdbg.h>
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 5;
+#define BUFFER_SIZE 42 // if we whan to compile our code  witout defining BUFEER_SIZE at compile time (e.g -D BUFFER_SIZE=42)
 #endif
 
 char    *get_next_line(int fd);
