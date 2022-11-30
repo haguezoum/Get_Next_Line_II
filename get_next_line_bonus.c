@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haguezou <haguezou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:09:54 by haguezou          #+#    #+#             */
-/*   Updated: 2022/11/29 01:07:04 by haguezou         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:34:17 by haguezou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include"get_next_line_bonus.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -102,18 +102,18 @@ char	*string(int fd, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
+	static char	*line[OPEN_MAX];
 	char		*tmp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = string(fd, line);
-	if (!line)
+	line[fd] = string(fd, line[fd]);
+	if (!line[fd])
 	{
-		free(line);
+		free(line[fd]);
 		return (NULL);
 	}
-	tmp = chunck(line);
-	line = restof(line);
+	tmp = chunck(line[fd]);
+	line[fd] = restof(line[fd]);
 	return (tmp);
 }
